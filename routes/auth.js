@@ -5,7 +5,7 @@ const validator = require('../validator/validation');
 const router = express.Router();
 
 //for testing purposes
-router.get('/mose', getAllUsers);
+router.get('/getAllSignUpDeatils', getAllUsers);
 
 //handles authentication normal email and password
 router.post('/auth/api/v1/signup', validator.createSignUpValidator, signup);
