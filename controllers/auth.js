@@ -14,6 +14,8 @@ exports.signup = (req, res) => {
   });
 };
 
+
+
 exports.getAllUsers = (req, res) => {
   const signup = SignUp.find()
   .then((signup) => {
