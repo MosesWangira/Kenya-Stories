@@ -2,7 +2,7 @@
   "name": "kenyanstories",
   "version": "1.0.0",
   "description": "Backend for an app that provides kenyan history stories all collectively together",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"
   },
