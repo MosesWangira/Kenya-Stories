@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
   res.send('NodeJS is fun and I wanna dive In deep');
 })
 
-let PORT = process.env.PORT || 8080;
+let PORT = process.env.PORT || 80;
 app.listen(PORT, () =>{
   console.log("Listening on port : ", PORT);
 })
