@@ -15,6 +15,10 @@ const authSchema = new mongoose.Schema({
   },
   name: {
     type: String,
+  },
+  emailConfirmation: {
+    type: String,
+    default: false
   }
 });
 
