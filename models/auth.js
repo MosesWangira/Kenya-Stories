@@ -8,6 +8,12 @@ const authSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  resetPasswordLink: {
+    type: String,
+  },
+  name: {
+    type: String,
   }
 });
 
