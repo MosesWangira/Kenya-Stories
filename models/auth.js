@@ -11,6 +11,7 @@ const authSchema = new mongoose.Schema({
   },
   resetPasswordLink: {
     type: String,
+    default: ""
   },
   name: {
     type: String,
