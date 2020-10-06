@@ -82,7 +82,7 @@ exports.login = (req, res) => {
       }
       res.status(400).send(jsonError)
     }else {
-      var check = result.status
+      var check = result.password
       res.status(200).send(check)
     }
   })
