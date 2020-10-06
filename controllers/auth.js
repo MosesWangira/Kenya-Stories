@@ -92,15 +92,16 @@ exports.login = (req, res) => {
 
         if(result == true){
           const token = jwt.sign({
-            email: obj.email,
-            userId: obj._id
+            email: result.email,
+            userId: result._id
           }, process.env.JWT_KEY,{
             expiresIn: "1h"
           });
+
           const jsonResult = {
             status: 200,
             token: token,
-            userId: obj
+            result: result
           };
 
           //sed status 200 if response successful
