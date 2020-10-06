@@ -26,7 +26,7 @@ const signUpSchema = new mongoose.Schema({
   }
 });
 
-const SignUp = mongoose.model("SignUp", signUpSchema);
+const SignUp = mongoose.model("signupcollection", signUpSchema);
 module.exports = SignUp
 
 
@@ -45,5 +45,5 @@ const loginSchema = new mongoose.Schema({
   }
 });
 
-const LogIn = mongoose.model("Login", loginSchema)
+const LogIn = mongoose.model("logincollection", loginSchema)
 module.exports = LogIn
