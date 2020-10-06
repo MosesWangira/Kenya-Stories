@@ -24,10 +24,10 @@ exports.signup = (req, res) => {
 
     const query = {email: newUser.email}
 
-    SignUp.findOne(query, (err, result) => {
+    signup.findOne(query, (err, result) => {
       if(result == null){
         //save to database
-        SignUp.insertOne(newUser, (err, result) => {
+        signup.insertOne(newUser, (err, result) => {
           const jsonObject = {
             status: 200,
             userId: newUser
