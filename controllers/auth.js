@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const SignUp = require('../models/auth');
+const SignUp = require('../models/signup');
+const Login = require('../models/login');
 
 //encrypting passwords using bcrypt
 const bcrypt = require('bcrypt');
@@ -60,7 +61,7 @@ Login Implementation
 
 exports.login = (req, res) => {
   const login = new Login(req.body);
-  
+
 };
 
 
