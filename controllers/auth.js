@@ -6,6 +6,10 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 
+/*
+Sign up implementation
+using bcrypt fo password hashing
+*/
 exports.signup = (req, res) => {
   var signup = new SignUp(req.body);
 
@@ -46,7 +50,9 @@ exports.signup = (req, res) => {
 };
 
 
-
+/*
+Get all users fro the database
+*/
 exports.getAllUsers = (req, res) => {
   const signup = SignUp.find()
   .then((signup) => {
