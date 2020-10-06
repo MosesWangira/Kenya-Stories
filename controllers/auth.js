@@ -13,10 +13,17 @@ using bcrypt fo password hashing
 exports.signup = (req, res) => {
   const signup = new SignUp(req.body);
 
-  var db = req.db;
-  var collection = db.get('SignUp');
+  const query = {'email': signup.email}
 
-  console.log(db);
+  const signUpCollection = mongoose.model('SignUp', SignUp);
+
+  // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+  // signUpCollection.findOne({ 'name.last': 'Ghost' }, 'name occupation', function (err, person) {
+  //   if (err) return handleError(err);
+  //   // Prints "Space Ghost is a talk show host".
+  //   console.log('%s %s is a %s.', person.name.first, person.name.last,
+  //   person.occupation);
+  // });
 
   //
   // signup.save().then(result => {
@@ -36,9 +43,7 @@ exports.signup = (req, res) => {
     //   resetPasswordLink: ""
     // }
 
-    const query = {email: signup.email}
-
-    SignUp.findOne(query, (err, result) => {
+    signUpCollection.findOne(query, (err, result) => {
       if(result == null){
         //save to database
         signup.save().then(result => {
