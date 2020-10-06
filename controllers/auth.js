@@ -29,7 +29,7 @@ exports.signup = (req, res) => {
     signUpCollection.findOne(query, (err, result) => {
       if(result == null){
         //save to database
-        signup.insertOne(newUser, (err, result) => {
+        signUpCollection.insertOne(newUser, (err, result) => {
           const jsonObject = {
             status: 200,
             userId: newUser
