@@ -13,7 +13,7 @@ using bcrypt fo password hashing
 exports.signup = (req, res) => {
   const signup = new SignUp(req.body);
 
-  const signUpCollection = SignUp;
+  // const signUpCollection = SignUp;
 
   bcrypt.hash(signup.password, saltRounds, (err, hash) => {
     const newUser = {
@@ -26,10 +26,10 @@ exports.signup = (req, res) => {
 
     const query = {email: newUser.email}
 
-    signUpCollection.findOne(query, (err, result) => {
+    SignUp.findOne(query, (err, result) => {
       if(result == null){
         //save to database
-        signUpCollection.insertOne(newUser, (err, result) => {
+        SignUp.insertOne(newUser, (err, result) => {
           const jsonObject = {
             status: 200,
             userId: newUser
