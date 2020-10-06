@@ -73,7 +73,7 @@ exports.login = (req, res) => {
         result: err
       }
       res.status(400).send(jsonError);
-    }else if (result.length == 0) {
+    }else if (result.length == null) {
       const jsonError = {
         status: 403,
         result: "Register Email"
@@ -81,7 +81,7 @@ exports.login = (req, res) => {
       res.status(403).send(jsonError);
     }else {
       var arrayOfStrings = result.map(function(obj){
-        
+
       })
     }
   });
