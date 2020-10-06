@@ -11,9 +11,9 @@ Sign up implementation
 using bcrypt fo password hashing
 */
 exports.signup = (req, res) => {
-  var signup = new SignUp(req.body);
+  const signup = new SignUp(req.body);
 
-  var signUpCollection = new SignUp();
+  const signUpCollection = SignUp;
 
   bcrypt.hash(signup.password, saltRounds, (err, hash) => {
     const newUser = {
