@@ -12,16 +12,15 @@ using bcrypt fo password hashing
 */
 exports.signup = (req, res) => {
   const signup = new SignUp(req.body);
-
-  signup.save().then(result => {
-    res.status(200).json({
-      status: 200,
-      result: result
-    })
-  })
-  // const signUpCollection = SignUp;
-
-  // bcrypt.hash(signup.password, saltRounds, (err, hash) => {
+  //
+  // signup.save().then(result => {
+  //   res.status(200).json({
+  //     status: 200,
+  //     result: result
+  //   })
+  // })
+  
+  bcrypt.hash(signup.password, saltRounds, (err, hash) => {
 
     // const newUser = {
     //   name: signup.name,
@@ -31,29 +30,28 @@ exports.signup = (req, res) => {
     //   resetPasswordLink: ""
     // }
 
-  //   const query = {email: signup.email}
-  //
-  //   SignUp.findOne(query, (err, result) => {
-  //     if(result == null){
-  //       //save to database
-  //       signup.save().then( result => {
-  //         res.status(200).send(json({
-  //           status:200,
-  //           result: result
-  //         }))
-  //       })
-  //       .catch(err => console.log(err));
-  //     }else if (err) {
-  //       //status 400 is failed response
-  //       const jsonObjectError = {
-  //         status: 400,
-  //         error: 'email already registered'
-  //       }
-  //       console.log(err);
-  //       res.status(400).send(jsonObjectError)
-  //     }
-  //   })
-  // })
+    const query = {email: signup.email}
+
+    SignUp.findOne(query, (err, result) => {
+      if(result == null){
+        //save to database
+        signup.save().then(result => {
+          res.status(200).json({
+            status: 200,
+            result: result
+          })
+        })
+      }else if (err) {
+        //status 400 is failed response
+        const jsonObjectError = {
+          status: 400,
+          error: 'email already registered'
+        }
+        console.log(err);
+        res.status(400).send(jsonObjectError)
+      }
+    })
+  })
 
 };
 
