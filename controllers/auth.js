@@ -27,6 +27,7 @@ exports.signup = (req, res) => {
 
    /*
     Check for duplicate entries before signing up the new user
+    TO DO("Send email upon registration")
     */
     SignUp.findOne({email: signup.email}, (err, result) =>{
       if(result == null){
@@ -49,6 +50,17 @@ exports.signup = (req, res) => {
 
   })
 
+};
+
+
+
+/*
+Login Implementation
+*/
+
+exports.login = (req, res) => {
+  const login = new Login(req.body);
+  
 };
 
 
