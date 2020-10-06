@@ -16,13 +16,13 @@ exports.signup = (req, res) => {
   // const signUpCollection = SignUp;
 
   bcrypt.hash(signup.password, saltRounds, (err, hash) => {
-    // const newUser = {
-    //   name: signup.name,
-    //   email: signup.email,
-    //   password: hash,
-    //   emailConfirmation: false,
-    //   resetPasswordLink: ""
-    // }
+    const newUser = {
+      name: signup.name,
+      email: signup.email,
+      password: hash,
+      emailConfirmation: false,
+      resetPasswordLink: ""
+    }
 
     const query = {email: signup.email}
 
@@ -30,10 +30,10 @@ exports.signup = (req, res) => {
       if(result == null){
         //save to database
       signup.save().then( result => {
-        res.status(200).send(json{
-          status: 200,
+        res.status(200).send(json({
+          status:200,
           result: result
-        })
+        }))
       })
       }else if (err) {
         //status 400 is failed response
