@@ -73,7 +73,7 @@ exports.login = (req, res) => {
         result: err
       }
       res.status(400).send(jsonError);
-    }else if (result.length == null) {
+    }else if (result == null) {
       const jsonError = {
         status: 403,
         result: "Register Email"
