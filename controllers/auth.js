@@ -66,85 +66,60 @@ exports.login = (req, res) => {
   const plainTextpassword = login.password
 
   //query email used to login from array
-  const queryEmail = {email: login.email};
+  const query = {email: login.email};
 
-  SignUp.findOne(queryEmail, (err, result) => {
+  SignUp.find(query).toArray((err, result) => {
     if(err){
       const jsonError = {
         status: 400,
         result: err
       }
-      res.status(400).send(jsonError);
-    }else if (result == null) {
+      res.status(400).send(jsonError)
+    }else if (result.length == 0) {
       const jsonError = {
         status: 403,
-        result: "Register Email"
+        result: 'email not registered'
       }
-      res.status(403).send(jsonError);
-    }else {
-      var arrayOfStrings = result.map(function(obj){
-        console.log(obj.password);
+      res.status(400).send(jsonError)
+    }else{
+      var arrayOfStrings = result.map(function(obj) {
         // Load hash from your password DB.
-        // bcrypt.compare(plainTextpassword, obj.password, (err, result) => {
-        //   // result == true send password and email
-        //
-        // })
-      })
+        bcrypt.compare(plainTextpassword, obj.password, function(err, result) {
+          // result == true send password and email
+          //result always equals to true
+          if(result == true){
+            const token = jwt.sign({
+              email: obj.email,
+              userId: obj._id
+            }, process.env.JWT_KEY,{
+              expiresIn: "1h"
+            });
+            const jsonResult = {
+              status: 200,
+              token: token,
+              userId: obj
+            };
+
+            //sed status 200 if response successful
+            res.status(200).send(jsonResult);
+          }
+          else{
+            const jsonError = {
+              status: 400,
+              error: 'wrong password'
+            }
+            //send status 400 if response is unsuccessful
+            res.status(400).send(jsonError)
+          }
+        });
+
+      });
     }
-  });
+  })
+
+})
 
 
-  // var plainTextpassword = req.body.password
-
-// //query email used to login from array
-// var query = {email: req.body.email}
-//
-// collection.find(query).toArray((err, result) => {
-//   if(err){
-//     res.status(400).send(err)
-//   }else if (result.length == 0) {
-//     const objToSend = {
-//         status: 400,
-//         error: 'email not registered'
-//     }
-//     res.status(400).send(objToSend)
-//   }else{
-//     var arrayOfStrings = result.map(function(obj) {
-//       // Load hash from your password DB.
-//       bcrypt.compare(plainTextpassword, obj.password, function(err, result) {
-//           // result == true send password and email
-//           //result always equals to true
-//           if(result == true){
-//             const token = jwt.sign({
-//               email: obj.email,
-//               userId: obj._id
-//             }, process.env.JWT_KEY,{
-//               expiresIn: "1h"
-//             })
-//             const objToSend = {
-//                 status: 200,
-//                 token: token,
-//                 userId: obj
-//             }
-//
-//             //sed status 200 if response successful
-//             res.status(200).send(objToSend)
-//           }
-//           else{
-//             const objToSendError = {
-//                 status: 400,
-//                 error: 'wrong password'
-//             }
-//             //send status 404 if response is unsuccessful
-//             res.status(400).send(objToSendError)
-//           }
-//       });
-//
-//     });
-//   }
-// })
-//
-// })
 };
 
 
