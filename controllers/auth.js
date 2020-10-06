@@ -14,9 +14,11 @@ using bcrypt fo password hashing
 exports.signup = (req, res) => {
   const signup = new SignUp(req.body);
 
+  const signUpSchema = new SignUp();
+
   const query = {'email': signup.email}
 
-  const signUpCollection = mongoose.model('SignUp', signup);
+  const signUpCollection = mongoose.model('SignUp', signUpSchema);
 
   // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
   // signUpCollection.findOne({ 'name.last': 'Ghost' }, 'name occupation', function (err, person) {
