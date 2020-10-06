@@ -117,9 +117,6 @@ exports.login = (req, res) => {
     }
   })
 
-})
-
-
 };
 
 
