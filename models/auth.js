@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
 
 const authSchema = new mongoose.Schema({
+  name: {
+    type: String,
+  },
   email: {
     type: String,
     required: true
@@ -12,9 +15,6 @@ const authSchema = new mongoose.Schema({
   resetPasswordLink: {
     type: String,
     default: ""
-  },
-  name: {
-    type: String,
   },
   emailConfirmation: {
     type: Boolean,
