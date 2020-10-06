@@ -14,11 +14,17 @@ using bcrypt fo password hashing
 exports.signup = (req, res) => {
   const signup = new SignUp(req.body);
 
-  const signUpSchema = new SignUp();
+  const signUpSchema = new SignUp({
+    name: signup.name,
+    email: signup.email,
+    password: signup.password,
+    resetPasswordLink: signup.resetPasswordLink,
+    emailConfirmation: signup.emailConfirmation
+  });
 
   const query = {'email': signup.email}
 
-  // const signUpCollection = mongoose.model('SignUp', signUpSchema);
+  const signUpCollection = mongoose.model('SignUp', signUpSchema);
 
   // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
   // signUpCollection.findOne({ 'name.last': 'Ghost' }, 'name occupation', function (err, person) {
@@ -46,7 +52,16 @@ exports.signup = (req, res) => {
     //   resetPasswordLink: ""
     // }
 
-    SignUp.findOne(query, (err, result) => {
+    signUpCollection.findOne(query, (err, result) => {
+      if(err){
+        //status 400 is failed response
+        const jsonObjectError = {
+          status: 400,
+          error: err
+        }
+        console.log(err);
+        res.status(400).send(jsonObjectError)
+      }
       if(result == null){
         //save to database
         signup.save().then(result => {
@@ -55,7 +70,7 @@ exports.signup = (req, res) => {
             result: result
           })
         })
-      }else if (err) {
+      }else {
         //status 400 is failed response
         const jsonObjectError = {
           status: 400,
