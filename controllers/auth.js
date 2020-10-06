@@ -63,6 +63,8 @@ Login Implementation
 exports.login = (req, res) => {
   const login = new Login(req.body);
 
+  const plainTextpassword = login.password
+
   //query email used to login from array
   const queryEmail = {email: login.email};
 
@@ -81,7 +83,12 @@ exports.login = (req, res) => {
       res.status(403).send(jsonError);
     }else {
       var arrayOfStrings = result.map(function(obj){
-
+        console.log(obj.password);
+        // Load hash from your password DB.
+        // bcrypt.compare(plainTextpassword, obj.password, (err, result) => {
+        //   // result == true send password and email
+        //
+        // })
       })
     }
   });
