@@ -30,7 +30,8 @@ exports.signup = (req, res) => {
     Check for duplicate entries before signing up the new user
     TO DO("Send email upon registration")
     */
-    SignUp.findOne({email: signup.email}, (err, result) =>{
+    const query = {email: signup.email};
+    SignUp.findOne(query, (err, result) =>{
       if(result == null){
         //save to database
         signUpSchema.save().then(result => {
@@ -62,6 +63,59 @@ Login Implementation
 exports.login = (req, res) => {
   const login = new Login(req.body);
 
+
+
+  // var plainTextpassword = req.body.password
+
+// //query email used to login from array
+// var query = {email: req.body.email}
+//
+// collection.find(query).toArray((err, result) => {
+//   if(err){
+//     res.status(400).send(err)
+//   }else if (result.length == 0) {
+//     const objToSend = {
+//         status: 400,
+//         error: 'email not registered'
+//     }
+//     res.status(400).send(objToSend)
+//   }else{
+//     var arrayOfStrings = result.map(function(obj) {
+//       // Load hash from your password DB.
+//       bcrypt.compare(plainTextpassword, obj.password, function(err, result) {
+//           // result == true send password and email
+//           //result always equals to true
+//           if(result == true){
+//             const token = jwt.sign({
+//               email: obj.email,
+//               userId: obj._id
+//             }, process.env.JWT_KEY,{
+//               expiresIn: "1h"
+//             })
+//             const objToSend = {
+//                 status: 200,
+//                 token: token,
+//                 userId: obj
+//             }
+//
+//             //sed status 200 if response successful
+//             res.status(200).send(objToSend)
+//           }
+//           else{
+//             const objToSendError = {
+//                 status: 400,
+//                 error: 'wrong password'
+//             }
+//             //send status 404 if response is unsuccessful
+//             res.status(400).send(objToSendError)
+//           }
+//       });
+//
+//     });
+//   }
+// })
+//
+// })
 };
 
 
