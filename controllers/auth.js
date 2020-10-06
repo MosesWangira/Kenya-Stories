@@ -29,12 +29,13 @@ exports.signup = (req, res) => {
     SignUp.findOne(query, (err, result) => {
       if(result == null){
         //save to database
-      signup.save().then( result => {
-        res.status(200).send(json({
-          status:200,
-          result: result
-        }))
-      })
+        signup.save().then( result => {
+          res.status(200).send(json({
+            status:200,
+            result: result
+          }))
+        })
+        .catch(err => console.log(err));
       }else if (err) {
         //status 400 is failed response
         const jsonObjectError = {
