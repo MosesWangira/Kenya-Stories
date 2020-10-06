@@ -39,7 +39,11 @@ exports.signup = (req, res) => {
           })
         })
       }else{
-        res.status(400).send("user already exists")
+        const jsonResult = {
+          status: 400,
+          result: "User with that email already exists"
+        }
+        res.status(400).send(jsonResult);
       }
     })
 
