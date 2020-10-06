@@ -1,17 +1,48 @@
 const express = require('express');
 const SignUp = require('../models/auth')
 
+//encrypting passwords using bcrypt
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 
 exports.signup = (req, res) => {
   var signup = new SignUp(req.body);
 
-  //save to database
-  signup.save().then(result => {
-    res.status(200).json({
-      status: 200,
-      result: result
-    });
-  });
+  bcrypt.hash(signup.password, saltRounds, (err, hash) => {
+    const newUser = {
+      name: signup.name,
+      email: signup.email,
+      password: hash,
+      emailConfirmation: false,
+      resetPasswordLink: ""
+    }
+
+    const query = {email: newUser.email}
+
+    SignUp.findOne(query, (err, result) => {
+      if(result == null){
+        //save to database
+        SignUp.insertOne(newUser, (err, result) => {
+          const jsonObject = {
+            status: 200,
+            userId: newUser
+          }
+          //status 200 is OK
+          res.status(200).send(jsonObject)
+        })
+      }else if (err) {
+        //status 400 is failed response
+        const jsonObjectError = {
+          status: 400,
+          error: 'email already registered'
+        }
+        console.log(err);
+        res.status(400).send(jsonObjectError)
+      }
+    })
+  })
+
 };
 
 
