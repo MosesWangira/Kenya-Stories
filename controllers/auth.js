@@ -16,13 +16,13 @@ exports.signup = (req, res) => {
   // const signUpCollection = SignUp;
 
   bcrypt.hash(signup.password, saltRounds, (err, hash) => {
-    const newUser = {
-      name: signup.name,
-      email: signup.email,
-      password: hash,
-      emailConfirmation: false,
-      resetPasswordLink: ""
-    }
+    // const newUser = {
+    //   name: signup.name,
+    //   email: signup.email,
+    //   password: hash,
+    //   emailConfirmation: false,
+    //   resetPasswordLink: ""
+    // }
 
     const query = {email: signup.email}
 
