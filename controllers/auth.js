@@ -1,5 +1,6 @@
 const express = require('express');
-const SignUp = require('../models/auth')
+const mongoose = require('mongoose');
+const SignUp = require('../models/auth');
 
 //encrypting passwords using bcrypt
 const bcrypt = require('bcrypt');
