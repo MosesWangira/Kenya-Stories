@@ -27,7 +27,6 @@ exports.signup = (req, res) => {
 
    /*
     Check for duplicate entries before signing up the new user
-    TO DO()
     */
     SignUp.findOne({email: signup.email}, (err, result) =>{
       if(result == null){
