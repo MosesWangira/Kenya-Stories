@@ -69,21 +69,21 @@ exports.login = (req, res) => {
   //query email used to login from array
   const query = {email: login.email};
 
-  SignUp.findOne(query, (err, result) => {
+  SignUp.findOne(query, (err, user) => {
     if(err){
       const jsonError = {
         status: 400,
         result: err
       }
       res.status(400).send(jsonError)
-    }else if (result == null) {
+    }else if (user == null) {
       const jsonError = {
         status: 403,
         result: 'email not registered'
       }
       res.status(400).send(jsonError)
     }else {
-      var databasePassword = result.password
+      var databasePassword = user.password
 
       bcrypt.compare(plainTextpassword, databasePassword, (err, result) =>{
         /* result == true send password and email
@@ -101,7 +101,7 @@ exports.login = (req, res) => {
           const jsonResult = {
             status: 200,
             token: token,
-            result: result
+            result: user
           };
 
           //sed status 200 if response successful
