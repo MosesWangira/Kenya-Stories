@@ -25,12 +25,22 @@ exports.signup = (req, res) => {
       emailConfirmation: signup.emailConfirmation
     });
 
-    //save to database
-    signUpSchema.save().then(result => {
-      res.status(200).json({
-        status: 200,
-        result: result
-      })
+   /*
+    Check for duplicate entries before signing up the new user
+    TO DO()
+    */
+    SignUp.findOne({email: signup.email}, (err, result) =>{
+      if(result == null){
+        //save to database
+        signUpSchema.save().then(result => {
+          res.status(200).json({
+            status: 200,
+            result: result
+          })
+        })
+      }else{
+        res.status(400).send("user already exists")
+      }
     })
 
 
