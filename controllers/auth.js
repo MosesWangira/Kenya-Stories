@@ -68,7 +68,7 @@ exports.login = (req, res) => {
   //query email used to login from array
   const queryEmail = {email: login.email};
 
-  Login.findOne(queryEmail, (err, result) => {
+  SignUp.findOne(queryEmail, (err, result) => {
     if(err){
       const jsonError = {
         status: 400,
