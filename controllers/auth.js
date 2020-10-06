@@ -82,59 +82,39 @@ exports.login = (req, res) => {
       }
       res.status(400).send(jsonError)
     }else {
-      var check = result.password
-      res.status(200).send(check)
+      var databasePassword = result.password
+
+      bcrypt.compare(plainTextpassword, databasePassword, (err, result) =>{
+        /* result == true send password and email
+        result always equals to true
+        */
+
+        if(result == true){
+          const token = jwt.sign({
+            email: obj.email,
+            userId: obj._id
+          }, process.env.JWT_KEY,{
+            expiresIn: "1h"
+          });
+          const jsonResult = {
+            status: 200,
+            token: token,
+            userId: obj
+          };
+
+          //sed status 200 if response successful
+          res.status(200).send(jsonResult);
+        }else {
+          const jsonError = {
+            status: 400,
+            error: 'wrong password'
+          }
+          //send status 400 if response is unsuccessful
+          res.status(400).send(jsonError)
+        }
+      })
     }
   })
-
-  // SignUp.findOne(query).toArray((err, result) => {
-  //   if(err){
-  //     const jsonError = {
-  //       status: 400,
-  //       result: err
-  //     }
-  //     res.status(400).send(jsonError)
-  //   }else if (result.length == 0) {
-  //     const jsonError = {
-  //       status: 403,
-  //       result: 'email not registered'
-  //     }
-  //     res.status(400).send(jsonError)
-  //   }else{
-  //     var arrayOfStrings = result.map(function(obj) {
-  //       // Load hash from your password DB.
-  //       bcrypt.compare(plainTextpassword, obj.password, function(err, result) {
-  //         // result == true send password and email
-  //         //result always equals to true
-  //         if(result == true){
-  //           const token = jwt.sign({
-  //             email: obj.email,
-  //             userId: obj._id
-  //           }, process.env.JWT_KEY,{
-  //             expiresIn: "1h"
-  //           });
-  //           const jsonResult = {
-  //             status: 200,
-  //             token: token,
-  //             userId: obj
-  //           };
-  //
-  //           //sed status 200 if response successful
-  //           res.status(200).send(jsonResult);
-  //         }
-  //         else{
-  //           const jsonError = {
-  //             status: 400,
-  //             error: 'wrong password'
-  //           }
-  //           //send status 400 if response is unsuccessful
-  //           res.status(400).send(jsonError)
-  //         }
-  //       });
-  //
-  //     });
-  //   }
-  // })
 
 };
 
