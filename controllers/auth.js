@@ -14,22 +14,23 @@ using bcrypt fo password hashing
 exports.signup = (req, res) => {
   const signup = new SignUp(req.body);
 
+
+  const signUpSchema = new SignUp({
+    name: signup.name,
+    email: signup.email,
+    password: "hashed password",
+    resetPasswordLink: signup.resetPasswordLink,
+    emailConfirmation: signup.emailConfirmation
+  });
+
   //save to database
-  signup.save().then(result => {
+  signUpSchema.save().then(result => {
     res.status(200).json({
       status: 200,
       result: result
     })
   })
 
-  // const signUpSchema = new SignUp({
-  //   name: signup.name,
-  //   email: signup.email,
-  //   password: signup.password,
-  //   resetPasswordLink: signup.resetPasswordLink,
-  //   emailConfirmation: signup.emailConfirmation
-  // });
-  //
   // const query = {'email': signup.email}
   //
   // const signUpCollection = mongoose.model('SignUp', signUpSchema);
