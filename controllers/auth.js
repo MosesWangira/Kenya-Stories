@@ -24,19 +24,19 @@ exports.signup = (req, res) => {
       resetPasswordLink: ""
     }
 
-    const query = {email: newUser.email}
+    const query = {email: signup.email}
 
     SignUp.findOne(query, (err, result) => {
       if(result == null){
         //save to database
-        SignUp.insertOne(newUser, (err, result) => {
-          const jsonObject = {
+        const signUpSave = SignUp.save()
+        .then((signUpSave) => {
+          res.status(200).send(json({
             status: 200,
-            userId: newUser
-          }
-          //status 200 is OK
-          res.status(200).send(jsonObject)
+            signUpSave
+          }))
         })
+        .catch(err => console.log(err));
       }else if (err) {
         //status 400 is failed response
         const jsonObjectError = {
