@@ -16,27 +16,25 @@ exports.signup = (req, res) => {
   // const signUpCollection = SignUp;
 
   bcrypt.hash(signup.password, saltRounds, (err, hash) => {
-    const newUser = {
-      name: signup.name,
-      email: signup.email,
-      password: hash,
-      emailConfirmation: false,
-      resetPasswordLink: ""
-    }
+    // const newUser = {
+    //   name: signup.name,
+    //   email: signup.email,
+    //   password: hash,
+    //   emailConfirmation: false,
+    //   resetPasswordLink: ""
+    // }
 
     const query = {email: signup.email}
 
     SignUp.findOne(query, (err, result) => {
       if(result == null){
         //save to database
-        const signUpSave = SignUp.save()
-        .then((signUpSave) => {
-          res.status(200).send(json({
-            status: 200,
-            signUpSave
-          }))
+      signup.save().then( result => {
+        res.status(200).send(json{
+          status: 200,
+          result: result
         })
-        .catch(err => console.log(err));
+      })
       }else if (err) {
         //status 400 is failed response
         const jsonObjectError = {
