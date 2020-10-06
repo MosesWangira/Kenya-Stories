@@ -13,18 +13,18 @@ using bcrypt fo password hashing
 exports.signup = (req, res) => {
   const signup = new SignUp(req.body);
 
+  signup.save().then( result => {
+    res.status(200).send(json({
+      status:200,
+      result: result
+    }))
+  })
+  .catch(err => console.log(err));
+
   // const signUpCollection = SignUp;
 
-  bcrypt.hash(signup.password, saltRounds, (err, hash) => {
+  // bcrypt.hash(signup.password, saltRounds, (err, hash) => {
 
-    signup.save().then( result => {
-      res.status(200).send(json({
-        status:200,
-        result: result
-      }))
-    })
-    .catch(err => console.log(err));
-    
     // const newUser = {
     //   name: signup.name,
     //   email: signup.email,
