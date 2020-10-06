@@ -18,7 +18,7 @@ exports.signup = (req, res) => {
 
   const query = {'email': signup.email}
 
-  const signUpCollection = mongoose.model('SignUp', signUpSchema);
+  // const signUpCollection = mongoose.model('SignUp', signUpSchema);
 
   // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
   // signUpCollection.findOne({ 'name.last': 'Ghost' }, 'name occupation', function (err, person) {
@@ -46,7 +46,7 @@ exports.signup = (req, res) => {
     //   resetPasswordLink: ""
     // }
 
-    signUpCollection.findOne(query, (err, result) => {
+    SignUp.findOne(query, (err, result) => {
       if(result == null){
         //save to database
         signup.save().then(result => {
