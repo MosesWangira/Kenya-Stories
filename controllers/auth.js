@@ -63,6 +63,28 @@ Login Implementation
 exports.login = (req, res) => {
   const login = new Login(req.body);
 
+  //query email used to login from array
+  const queryEmail = {email: login.email};
+
+  Login.findOne(queryEmail, (err, result) => {
+    if(err){
+      const jsonError = {
+        status: 400,
+        result: err
+      }
+      res.status(400).send(jsonError);
+    }else if (result.length == 0) {
+      const jsonError = {
+        status: 403,
+        result: "Register Email"
+      }
+      res.status(403).send(jsonError);
+    }else {
+      var arrayOfStrings = result.map(function(obj){
+        
+      })
+    }
+  });
 
 
   // var plainTextpassword = req.body.password
