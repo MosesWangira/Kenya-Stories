@@ -19,8 +19,8 @@ exports.signup = (req, res) => {
   //     result: result
   //   })
   // })
-  
-  bcrypt.hash(signup.password, saltRounds, (err, hash) => {
+
+  // bcrypt.hash(signup.password, saltRounds, (err, hash) => {
 
     // const newUser = {
     //   name: signup.name,
@@ -51,7 +51,7 @@ exports.signup = (req, res) => {
         res.status(400).send(jsonObjectError)
       }
     })
-  })
+  // })
 
 };
 
