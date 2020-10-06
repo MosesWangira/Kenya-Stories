@@ -95,7 +95,7 @@ exports.login = (req, res) => {
             email: result.email,
             userId: result._id
           }, process.env.JWT_KEY,{
-            expiresIn: "1h"
+            expiresIn: "24h"
           });
 
           const jsonResult = {
