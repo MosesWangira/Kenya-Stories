@@ -33,7 +33,13 @@ exports.signup = (req, res) => {
     */
     const query = {email: signup.email};
     SignUp.findOne(query, (err, result) =>{
-      if(result == null){
+      if(err){
+        const jsonError = {
+          status: 401,
+          result: "Contact Developer"
+        }
+        res.status(400).send(jsonError);
+      }else if(result == null){
         //save to database
         signUpSchema.save().then(result => {
           res.status(200).json({
