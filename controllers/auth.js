@@ -72,16 +72,16 @@ exports.login = (req, res) => {
   SignUp.findOne(query, (err, user) => {
     if(err){
       const jsonError = {
-        status: 400,
+        status: 401,
         result: err
       }
-      res.status(400).send(jsonError)
+      res.status(401).send(jsonError)
     }else if (user == null) {
       const jsonError = {
         status: 403,
         result: 'email not registered'
       }
-      res.status(400).send(jsonError)
+      res.status(403).send(jsonError)
     }else {
       var databasePassword = user.password
 
