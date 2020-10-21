@@ -7,8 +7,6 @@ const router = express.Router();
 router.get('/getAllMurders', getAllMurders);
 
 //post all murders details to the database
-// router.post('/api/v1/murders', validator.createMurderValidator, murders);
-
-router.get('/api/v1/murders', murders);
+router.post('/api/v1/murders', validator.createMurderValidator, murders);
 
 module.exports = router
