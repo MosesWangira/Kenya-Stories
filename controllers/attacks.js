@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const Attacks = require('../models/attacks');
 
-exports.murders = (req, res) => {
+exports.attacks = (req, res) => {
   const attack = new Attacks(req.body);
 
   //Data to be saved to database and sent as json

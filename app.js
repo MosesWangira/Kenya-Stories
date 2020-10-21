@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 
 const authRoute = require('./routes/auth');
 const murderRoute = require('./routes/murders');
-// const attackRoute = require('./routes/attacks');
+const attackRoute = require('./routes/attacks');
 
 // MiddleWares
 app.use(express.json())
@@ -21,7 +21,7 @@ app.use(expressValidator());
 
 app.use('/', authRoute);
 app.use('/', murderRoute);
-// app.use('/', attackRoute);
+app.use('/', attackRoute);
 
 let url =  process.env.DB_CONNECTION_URI || "mongodb://localhost:Kenya-Stories"
 
