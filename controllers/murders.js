@@ -22,6 +22,5 @@ exports.murders = (req, res) => {
       result: result
     })
   })
-  .catch(err => console.log(err));
-  
+
 };
