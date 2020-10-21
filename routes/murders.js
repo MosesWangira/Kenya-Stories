@@ -9,8 +9,6 @@ router.get('/getAllMurders', getAllMurders);
 //post all murders details to the database
 // router.post('/api/v1/murders', validator.createMurderValidator, murders);
 
-router.post('/api/v1/murders', (req, res) =>{
-  res.status(200).send("working");
-})
+router.get('/api/v1/murders', murders);
 
 module.exports = router
