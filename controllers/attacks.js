@@ -7,7 +7,7 @@ exports.attacks = (req, res) => {
   const attack = new Attacks(req.body);
 
   //Data to be saved to database and sent as json
-  const attackSchema = new Murders({
+  const attackSchema = new Attacks({
     title: attack.title,
     president: attack.president,
     year: attack.year,
