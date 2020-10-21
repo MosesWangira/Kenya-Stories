@@ -3,13 +3,6 @@ const mongoose = require('mongoose');
 
 const Murders = require('../models/murders');
 
-/*
-Get all murder stories fro the database
-*/
-exports.getAllMurders = (req, res) => {
-  res.status(200).send("Hello murderers");
-};
-
 exports.murders = (req, res) => {
   const murder = new Murders(req.body);
 
