@@ -9,13 +9,15 @@ const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
 
 const authRoute = require('./routes/auth')
+const murderRoute = require('./routes/murders')
 
 // MiddleWares
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
-app.use('/', authRoute);;
+app.use('/', authRoute);
+app.use('/', murderRoute);
 
 let url =  process.env.DB_CONNECTION_URI || "mongodb://localhost:Kenya-Stories"
 
