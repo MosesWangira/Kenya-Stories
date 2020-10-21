@@ -15,6 +15,8 @@ exports.murders = (req, res) => {
     description: murder.description
   });
 
+  console.log(murderSchema);
+
   //save to database
   murderSchema.save().then(result => {
     res.status(200).json({
