@@ -1,5 +1,5 @@
 const express = require('express');
-const {murders, getAllMurders} = require('../controllers/murders');
+const {murders} = require('../controllers/murders');
 const validator = require('../validator/validation');
 
 const router = express.Router();
