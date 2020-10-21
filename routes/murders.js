@@ -4,6 +4,6 @@ const validator = require('../validator/validation');
 const router = express.Router();
 
 //post all murders details to the database
-router.post('/auth/api/v1/murders', validator.createMurderValidator, murders);
+router.post('/api/v1/murders', validator.createMurderValidator, murders);
 
 module.exports = router
