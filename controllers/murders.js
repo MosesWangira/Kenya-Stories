@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Murders = require('../models/murders');
 
 /*
-Get all users fro the database
+Get all murder stories fro the database
 */
 exports.getAllMurders = (req, res) => {
   res.status(200).send("Hello murderers");
