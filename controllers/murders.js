@@ -3,6 +3,13 @@ const mongoose = require('mongoose');
 
 const Murders = require('../models/murders');
 
+/*
+Get all users fro the database
+*/
+exports.getAllMurders = (req, res) => {
+  res.status(200).send("Hello murderers");
+};
+
 exports.murders = (req, res) => {
   const murder = new Murders(req.body);
 
@@ -14,8 +21,6 @@ exports.murders = (req, res) => {
     imageUrl: murder.imageUrl,
     description: murder.description
   });
-
-  console.log(murderSchema);
 
   //save to database
   murderSchema.save().then(result => {

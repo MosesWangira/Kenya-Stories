@@ -8,8 +8,8 @@ require('dotenv/config')
 const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
 
-const authRoute = require('./routes/auth')
-const murderRoute = require('./routes/murders')
+const authRoute = require('./routes/auth');
+const murderRoute = require('./routes/murders');
 
 // MiddleWares
 app.use(express.json())
