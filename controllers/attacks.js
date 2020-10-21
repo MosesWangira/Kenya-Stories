@@ -19,8 +19,7 @@ exports.attacks = (req, res) => {
   //save to database
   attackSchema.save().then(result => {
     res.status(200).json({
-      status: 200,
-      result: result
+      result
     })
   })
 
