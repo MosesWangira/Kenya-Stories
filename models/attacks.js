@@ -1,7 +1,6 @@
 /*
 Attack Schema
 */
-
 const mongoose = require('mongoose')
 const attackSchema = new mongoose.Schema({
   title: {
