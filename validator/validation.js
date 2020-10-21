@@ -78,3 +78,38 @@ exports.createMurderValidator = (req, res, next) => {
   //process run to next MiddleWares
   next();
 };
+
+
+exports.createAttackValidator = (req, res, next) => {
+  // title validation
+  req.check('title', "provide title").notEmpty();
+
+  //president validation
+  req.check('president', "provide name of president").notEmpty();
+
+  //year validation
+  req.check('year', "provide year which murder happened").notEmpty();
+
+  //place validation
+  req.check('place', "provide place of attack").notEmpty();
+
+  //imageUrl validation
+  req.check('imageUrl', "provide url link of image").notEmpty();
+
+  //description validation
+  req.check('description', "provide description details").notEmpty();
+
+  // check for error
+  const errors = req.validationErrors();
+  //if error show first error
+  if(errors){
+    const firstError = errors.map((error) => error.msg)[0]
+    res.status(400).json({
+      status: 400,
+      error: firstError
+    })
+  }
+
+  //process run to next MiddleWares
+  next();
+};
