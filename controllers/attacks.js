@@ -13,6 +13,7 @@ exports.attacks = (req, res) => {
     year: attack.year,
     place: attack.place,
     imageUrl: attack.imageUrl,
+    smallDescription: attack.smallDescription
     description: attack.description
   });
 

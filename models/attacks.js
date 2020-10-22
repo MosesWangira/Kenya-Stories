@@ -24,6 +24,12 @@ const attackSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+
+  smallDescription: {
+    type: String,
+    required: true
+  },
+
   description: {
     type: String,
     required: true

@@ -61,6 +61,9 @@ exports.createMurderValidator = (req, res, next) => {
   //imageUrl validation
   req.check('imageUrl', "provide url link of image").notEmpty();
 
+  //small description validation
+  req.check('smallDescription', "provide small description").notEmpty();
+
   //description validation
   req.check('description', "provide description details").notEmpty();
 
@@ -95,6 +98,9 @@ exports.createAttackValidator = (req, res, next) => {
 
   //imageUrl validation
   req.check('imageUrl', "provide url link of image").notEmpty();
+
+  //small description validation
+  req.check('smallDescription', "provide small description").notEmpty();
 
   //description validation
   req.check('description', "provide description details").notEmpty();
