@@ -8,6 +8,6 @@ const router = express.Router();
 router.post('/api/v1/attacks', validator.createAttackValidator, attacks);
 
 //get all attacks database
-router.get('./api/v1/getAllAttacksData', getAllAttacksData);
+router.get('/api/v1/getAllAttacksData', getAllAttacksData);
 
 module.exports = router
