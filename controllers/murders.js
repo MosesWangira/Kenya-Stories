@@ -12,7 +12,7 @@ exports.murders = (req, res) => {
     president: murder.president,
     year: murder.year,
     imageUrl: murder.imageUrl,
-    smallDescription: murder.smallDescription
+    smallDescription: murder.smallDescription,
     description: murder.description
   });
 
