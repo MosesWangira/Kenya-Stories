@@ -24,3 +24,17 @@ exports.attacks = (req, res) => {
   })
 
 };
+
+/*
+Get all attacks from the database
+*/
+exports.getAllAttacksData = (req, res) => {
+  const attack = Attacks.find()
+  .then((attack) => {
+    res.status(200).json({
+      status:200,
+      result: attack
+    })
+  })
+  .catch(err => console.log(err));
+};
