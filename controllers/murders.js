@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 
 const Murders = require('../models/murders');
 
+
+//save murder data to database
 exports.murders = (req, res) => {
   const murder = new Murders(req.body);
 
@@ -24,4 +26,18 @@ exports.murders = (req, res) => {
     })
   })
 
+};
+
+/*
+Get all murders from the database
+*/
+exports.getAllMurdersData = (req, res) => {
+  const murder = Murders.find()
+  .then((murder) => {
+    res.status(200).json({
+      status:200,
+      result: murder
+    })
+  })
+  .catch(err => console.log(err));
 };
