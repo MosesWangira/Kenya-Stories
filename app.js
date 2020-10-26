@@ -12,6 +12,7 @@ const authRoute = require('./routes/auth');
 const murderRoute = require('./routes/murders');
 const attackRoute = require('./routes/attacks');
 const scandalsRoute = require('./routes/scandals');
+const gangsRoute = require('./routes/gangs');
 
 // MiddleWares
 app.use(express.json())
@@ -24,6 +25,7 @@ app.use('/', authRoute);
 app.use('/', murderRoute);
 app.use('/', attackRoute);
 app.use('/', scandalsRoute);
+app.use('/', gangsRoute);
 
 let url =  process.env.DB_CONNECTION_URI || "mongodb://localhost:Kenya-Stories"
 

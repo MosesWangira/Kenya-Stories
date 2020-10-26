@@ -157,3 +157,35 @@ exports.createScandalsValidator = (req, res, next) => {
   //process run to next MiddleWares
   next();
 };
+
+exports.createGangsValidator = (req, res, next) => {
+  // title validation
+  req.check('gangName', "provide gangName").notEmpty();
+
+  //president validation
+  req.check('president', "provide name of president").notEmpty();
+
+  //year validation
+  req.check('yearOfUprising', "provide year of uprising").notEmpty();
+
+
+  //small description validation
+  req.check('smallDescription', "provide small description").notEmpty();
+
+  //description validation
+  req.check('description', "provide description details").notEmpty();
+
+  // check for error
+  const errors = req.validationErrors();
+  //if error show first error
+  if(errors){
+    const firstError = errors.map((error) => error.msg)[0]
+    res.status(400).json({
+      status: 400,
+      error: firstError
+    })
+  }
+
+  //process run to next MiddleWares
+  next();
+};
