@@ -91,7 +91,7 @@ exports.createAttackValidator = (req, res, next) => {
   req.check('president', "provide name of president").notEmpty();
 
   //year validation
-  req.check('year', "provide year which murder happened").notEmpty();
+  req.check('year', "provide year which attack happened").notEmpty();
 
   //place validation
   req.check('place', "provide place of attack").notEmpty();
@@ -129,7 +129,7 @@ exports.createScandalsValidator = (req, res, next) => {
   req.check('president', "provide name of president").notEmpty();
 
   //year validation
-  req.check('year', "provide year which murder happened").notEmpty();
+  req.check('year', "provide year which scandals happened").notEmpty();
 
   //place validation
   req.check('mainSuspect', "provide mainSuspect").notEmpty();
