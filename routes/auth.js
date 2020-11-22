@@ -16,4 +16,7 @@ router.post('/auth/api/v1/signup', validator.createSignUpValidator, signup);
 //login
 router.post('/auth/api/v1/login', validator.createLoginValidator, login);
 
+
+router.post('/auth/api/v1/tokenAutoLogin', tokenAuth);
+
 module.exports = router
