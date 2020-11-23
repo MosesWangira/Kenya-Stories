@@ -27,7 +27,7 @@ exports.signup = (req, res) => {
       emailConfirmation: signup.emailConfirmation
     });
 
-   /*
+    /*
     Check for duplicate entries before signing up the new user
     TO DO("Send email upon registration")
     */
