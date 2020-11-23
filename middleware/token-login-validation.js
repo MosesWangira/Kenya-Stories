@@ -4,7 +4,7 @@ module.exports = (req, res, next) =>{
   try{
 
     const jsonResponse = {
-      status: 400,
+      status: 200,
       error: "token is valid"
     }
 
