@@ -5,7 +5,7 @@ module.exports = (req, res, next) =>{
 
     const jsonResponse = {
       status: 200,
-      error: "token is valid"
+      response: "token is valid"
     }
 
     const token = req.headers.authorization.split(" ")[1]
