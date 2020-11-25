@@ -15,7 +15,8 @@ exports.murders = (req, res) => {
     year: murder.year,
     imageUrl: murder.imageUrl,
     smallDescription: murder.smallDescription,
-    description: murder.description
+    description: murder.description,
+    cause: murder.cause
   });
 
   //save to database

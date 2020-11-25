@@ -29,6 +29,11 @@ const murdersSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true
+  },
+
+  cause: {
+    type: String,
+    required: true
   }
 });
 

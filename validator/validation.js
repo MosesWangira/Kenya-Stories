@@ -67,6 +67,9 @@ exports.createMurderValidator = (req, res, next) => {
   //description validation
   req.check('description', "provide description details").notEmpty();
 
+  //cause validation
+  req.check('cause', "provide cause details").notEmpty();
+
   // check for error
   const errors = req.validationErrors();
   //if error show first error
