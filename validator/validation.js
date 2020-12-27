@@ -192,3 +192,24 @@ exports.createGangsValidator = (req, res, next) => {
   //process run to next MiddleWares
   next();
 };
+
+
+
+exports.createNtsaValidator = (req, res, next) => {
+  //description validation
+  req.check('description', "provide description details").notEmpty();
+
+  // check for error
+  const errors = req.validationErrors();
+  //if error show first error
+  if(errors){
+    const firstError = errors.map((error) => error.msg)[0]
+    res.status(400).json({
+      status: 400,
+      error: firstError
+    })
+  }
+
+  //process run to next MiddleWares
+  next();
+};
