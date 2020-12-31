@@ -130,6 +130,9 @@ exports.login = (req, res) => {
 resetpwd
 */
 exports.resetpwd = (req, res) => {
+  //query email used to login from array
+  const query = {email: req.body.email};
+  res.status(200).send(query)
 
 };
 
