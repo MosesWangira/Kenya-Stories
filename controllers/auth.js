@@ -126,6 +126,12 @@ exports.login = (req, res) => {
 
 };
 
+/*
+resetpwd
+*/
+exports.resetpwd = (req, res) => {
+
+};
 
 /*
 Get all users fro the database
