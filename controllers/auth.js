@@ -201,30 +201,8 @@ exports.resetpwd = (req, res) => {
             returnOriginal: false
           });
 
+          doc.save()
 
-
-          // var query = {email: emailToSendTo}
-          //
-          // SignUp.findOne(query, (err, result) =>{
-          //   if(result == null){
-          //     res.status(406).send('Sorry you do not have access to reset this password')
-          //   }
-          //   else{
-          //     var myquery = { resetPasswordLink: "" };
-          //
-          //     var newvalues = { $set: {resetPasswordLink: generatedNumber} };
-          //     SignUp.updateOne(myquery, newvalues)
-          //     // result.status(200).send('password reset code sent successfully')
-          //     // signUpCollection.updateOne(myquery, newvalues, (err, res) =>{
-          //     //   if(err){
-          //     //     res.status(400).send('password update failed')
-          //     //   }else {
-          //     //     console.log('password updated successfully');
-          //     //   }
-          //     //   db.close()
-          //     // })
-          //   }
-          // })
         }
       })
 
