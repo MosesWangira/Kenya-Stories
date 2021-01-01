@@ -132,7 +132,67 @@ resetpwd
 exports.resetpwd = (req, res) => {
   //query email used to login from array
   const query = {email: req.body.email};
-  res.status(200).send(query)
+
+  SignUp.find(query).toArray((err, result) =>{
+    if(err){
+      const jsonResetObj = {
+        status: 400,
+        error: err
+      }
+      res.status(400).send(jsonResetObj)
+    }else if(result.length == 0){
+      const jsonResetObj = {
+        status: 401,
+        error: 'email does not exist'
+      }
+      res.status(401).send(jsonResetObj)
+    }
+    else {
+      //send email to the user account if the user exist
+      var emailToSendTo = req.body.email
+
+      //generate random 6 figure number
+      const generatedNumber = Math.floor(100000 + Math.random() * 900000);
+
+      let transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+          type: 'OAuth2',
+          user: process.env.SENDER_EMAIL,
+          clientId: process.env.CLIENT_ID,
+          clientSecret: process.env.CLIENT_SECRET,
+          refreshToken: process.env.REFRESH_TOKEN,
+          accessToken: process.env.ACCESS_TOKEN,
+          expires: process.env.EXPIRES
+        }
+      });
+
+
+      var mailOptions = {
+        from: 'Kenyan Stories <${process.env.SENDER_EMAIL}>',
+        to: emailToSendTo,
+        subject: 'Reset password code',
+        text: generatedNumber,
+      }
+
+
+      transporter.sendMail(mailOptions, function (err, res) {
+        if(err){
+          console.log(err);
+        } else {
+          console.log('email sent');
+          //upddate resetpassword attribute in signup
+        }
+      })
+      const jsonResetObj = {
+        status: 200,
+        result: 'email sent to : ' + emailToSendTo
+      }
+      res.status(200).send(jsonResetObj)
+    }
+  })
 
 };
 
