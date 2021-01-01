@@ -190,7 +190,7 @@ exports.resetpwd = (req, res) => {
           console.log(err);
         } else {
           //update resetpassword attribute in signup
-          var myquery = { email: userEmail };
+          var myquery = { email: req.body.email };
 
           var newvalues = { $set: {resetPasswordLink: generatedNumber} };
           SignUp.updateOne(myquery, newvalues)
@@ -198,11 +198,11 @@ exports.resetpwd = (req, res) => {
         }
       })
 
-      // const jsonResetObj = {
-      //   status: 200,
-      //   result: 'email sent to : ' + emailToSendTo
-      // }
-      // res.status(200).send(jsonResetObj)
+      const jsonResetObj = {
+        status: 200,
+        result: 'email sent to : ' + emailToSendTo
+      }
+      res.status(200).send(jsonResetObj)
     }
   })
 
