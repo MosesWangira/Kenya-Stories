@@ -158,8 +158,17 @@ exports.resetpwd = (req, res) => {
       //send email to the user account if the user exist
       var emailToSendTo = req.body.email
 
+      //generate jsonwebtoken to for reseting password
+      const resetPasswordToken = jwt.sign({
+        userId: req.body.email
+      }, process.env.JWT_RESET_PASSWORD_KEY,{
+        expiresIn: "20m"
+      })
+
+      console.log("token: " + resetPasswordToken);
+
       //generate random 6 figure number
-      const generatedNumber = (Math.floor(100000 + Math.random() * 900000)).toString();
+      // const generatedNumber = (Math.floor(100000 + Math.random() * 900000)).toString();
 
       let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -176,12 +185,15 @@ exports.resetpwd = (req, res) => {
         }
       });
 
+       var hrefAttr = "Reset Password link" + "\n" +
+       "https://i-penda-backend.herokuapp.com/auth/api/v1/resetPasswordScreen/" +
+       resetPasswordToken
 
       var mailOptions = {
         from: 'Kenyan Stories Application <${process.env.SENDER_EMAIL}>',
         to: emailToSendTo,
         subject: 'Reset password code',
-        text: "Reset Password code" + "\n" + generatedNumber,
+        text: hrefAttr,
       }
 
 
@@ -189,25 +201,7 @@ exports.resetpwd = (req, res) => {
         if(err){
           console.log(err);
         } else {
-          //update resetpassword attribute in signup
-          //find user by email and update password
-
-          // const filter = { email: emailToSendTo };
-          // const resetPasswordLink = { resetPasswordLink: generatedNumber };
-          //
-          // // `doc` is the document _after_ `update` was applied because of
-          // // `new: true`
-          // let doc = SignUp.findOneAndUpdate(filter, resetPasswordLink, {
-          //   returnOriginal: false
-          // });
-          //
-          // doc.save()
-
-          // Update the document using `updateOne()`
-          SignUp.updateOne({ email: emailToSendTo }, {
-            resetPasswordLink: generatedNumber
-          });
-
+          console.log('email sent');
         }
       })
 
