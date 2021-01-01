@@ -8,6 +8,9 @@ const Login = require('../models/login');
 const nodemailer = require('nodemailer')
 const xoauth2 = require('xoauth2')
 
+// require('dotenv/config')
+require('dotenv').config()
+
 //encrypting passwords using bcrypt
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
