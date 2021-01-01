@@ -159,7 +159,7 @@ exports.resetpwd = (req, res) => {
       var emailToSendTo = req.body.email
 
       //generate random 6 figure number
-      const generatedNumber = Math.floor(100000 + Math.random() * 900000);
+      const generatedNumber = (Math.floor(100000 + Math.random() * 900000)).toString();
 
       let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
