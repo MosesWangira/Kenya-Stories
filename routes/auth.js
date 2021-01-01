@@ -1,5 +1,5 @@
 const express = require('express');
-const {getAllUsers, signup, login, resetpwd, resetpwdscreen} = require('../controllers/auth');
+const {getAllUsers, signup, login, resetpwd, resetpwdscreen, resetpwddatabase} = require('../controllers/auth');
 const validator = require('../validator/validation');
 const tokenAuth = require('../middleware/token-login-validation')
 
@@ -25,5 +25,7 @@ router.post('/auth/api/v1/resetPassword', resetpwd);
 
 //reset password resetPasswordScreen
 router.get('/auth/api/v1/resetPassword/:token', resetpwdscreen);
+
+router.post('/auth/api/v1/resetPassword/:token', resetpwddatabase);
 
 module.exports = router

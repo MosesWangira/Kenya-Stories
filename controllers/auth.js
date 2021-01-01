@@ -212,10 +212,54 @@ exports.resetpwd = (req, res) => {
   })
 };
 
-
+/*
+rendering reset password form
+*/
 exports.resetpwdscreen = (req, res) => {
   res.render('form.html');
 };
+
+
+/*
+Reset password from form
+*/
+exports.resetpwddatabase = (req, res) => {
+  bcrypt.hash(req.body.password, saltRounds, (err, hash) =>{
+
+    var token = req.params.token
+    //use slicing to get the token passed in the url
+    // var token = baseUrl.slice(69)
+    // var password = req.body.password
+    // var confirmPassword = req.body.confirmPassword
+
+    jwt.verify(token, process.env.JWT_RESET_PASSWORD_KEY, function(err, decodedData){
+      if(err){
+        res.status(400).send('token expired or incorrect token')
+      }else {
+        
+        var userEmail = decodedData.userId
+
+        var query = {email: userEmail}
+
+        //find user by email and update password
+        SignUp.findOne(query, (err, result) =>{
+          if(result == null){
+            res.status(400).send('Sorry you do not have access to reset this password')
+          }
+          else{
+            var myquery = { email: userEmail };
+
+            var newvalues = { $set: {password: hash} };
+            signUpCollection.updateOne(myquery, newvalues)
+            res.status(200).send('password updated successfully')
+          }
+        })
+
+      }
+    })
+  })
+};
+
 
 /*
 Get all users fro the database
