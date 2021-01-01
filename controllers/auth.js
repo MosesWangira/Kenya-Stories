@@ -186,7 +186,7 @@ exports.resetpwd = (req, res) => {
       });
 
        var hrefAttr = "Reset Password link" + "\n" +
-       "https://i-penda-backend.herokuapp.com/auth/api/v1/resetPasswordScreen/" +
+       "https://kenyan-stories.herokuapp.com/auth/api/v1/resetPasswordScreen/" +
        resetPasswordToken
 
       var mailOptions = {
@@ -212,7 +212,11 @@ exports.resetpwd = (req, res) => {
       res.status(200).send(jsonResetObj)
     }
   })
+};
 
+
+exports.resetpwdscreen = (req, res) => {
+  res.status(200).send("hello passcode")
 };
 
 /*
