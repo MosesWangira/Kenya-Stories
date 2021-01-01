@@ -192,16 +192,21 @@ exports.resetpwd = (req, res) => {
           //update resetpassword attribute in signup
           //find user by email and update password
 
-          const filter = { email: emailToSendTo };
-          const resetPasswordLink = { resetPasswordLink: generatedNumber };
+          // const filter = { email: emailToSendTo };
+          // const resetPasswordLink = { resetPasswordLink: generatedNumber };
+          //
+          // // `doc` is the document _after_ `update` was applied because of
+          // // `new: true`
+          // let doc = SignUp.findOneAndUpdate(filter, resetPasswordLink, {
+          //   returnOriginal: false
+          // });
+          //
+          // doc.save()
 
-          // `doc` is the document _after_ `update` was applied because of
-          // `new: true`
-          let doc = SignUp.findOneAndUpdate(filter, resetPasswordLink, {
-            returnOriginal: false
+          // Update the document using `updateOne()`
+          SignUp.updateOne({ email: emailToSendTo }, {
+            resetPasswordLink: generatedNumber
           });
-
-          doc.save()
 
         }
       })
