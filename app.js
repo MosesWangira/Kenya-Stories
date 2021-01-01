@@ -28,6 +28,8 @@ app.use('/', scandalsRoute);
 app.use('/', gangsRoute);
 app.use('/', ntsaRoute);
 
+app.engine('html', require('ejs').renderFile);
+
 let url =  process.env.DB_CONNECTION_URI || "mongodb://localhost:Kenya-Stories"
 
 mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true }).then(() =>
