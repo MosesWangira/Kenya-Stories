@@ -215,6 +215,7 @@ exports.resetpwd = (req, res) => {
 
 
 exports.resetpwdscreen = (req, res) => {
+  console.log("Hello there");
   res.render('form.html');
 };
 
