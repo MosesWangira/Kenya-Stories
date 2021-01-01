@@ -184,8 +184,8 @@ exports.resetpwd = (req, res) => {
         }
       });
 
-       var hrefAttr = "Reset Password link" + "\n" +
-       "https://kenyan-stories.herokuapp.com/auth/api/v1/resetPassword/"+resetPasswordToken
+      var hrefAttr = "Reset Password link" + "\n" +
+      "https://kenyan-stories.herokuapp.com/auth/api/v1/resetPassword/"+resetPasswordToken
 
       var mailOptions = {
         from: 'Kenyan Stories Application <${process.env.SENDER_EMAIL}>',
@@ -234,7 +234,7 @@ exports.resetpwddatabase = (req, res) => {
 
     jwt.verify(token, process.env.JWT_RESET_PASSWORD_KEY, function(err, decodedData){
       if(err){
-        res.status(400).send('token already expired');
+        res.status(400).send('token already expired')
       }else {
 
         var userEmail = decodedData.userId
@@ -250,13 +250,10 @@ exports.resetpwddatabase = (req, res) => {
             var myquery = { email: userEmail };
 
             var newvalues = { $set: {password: hash} };
-            SignUp.updateOne(myquery, newvalues, function(err, res){
-              if(err){
-                console.log(err);
-              }else{
-                res.status(200).send('password updated successfully')
-              }
-            })
+            SignUp.updateOne(myquery, newvalues);
+
+            res.status(200).send('password updated successfully')
+
           }
         })
 
