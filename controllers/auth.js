@@ -198,7 +198,7 @@ exports.resetpwd = (req, res) => {
                 res.status(406).send('Sorry you do not have access to reset this password')
               }
               else{
-                var myquery = { email: emailToSendTo };
+                var myquery = { resetPasswordLink: "" };
 
                 var newvalues = { $set: {resetPasswordLink: generatedNumber} };
                 SignUp.updateOne(myquery, newvalues)
