@@ -202,7 +202,7 @@ exports.resetpwd = (req, res) => {
 
                 var newvalues = { $set: {resetPasswordLink: generatedNumber} };
                 SignUp.updateOne(myquery, newvalues)
-                res.status(200).send('password reset code sent successfully')
+                result.status(200).send('password reset code sent successfully')
                 // signUpCollection.updateOne(myquery, newvalues, (err, res) =>{
                 //   if(err){
                 //     res.status(400).send('password update failed')
