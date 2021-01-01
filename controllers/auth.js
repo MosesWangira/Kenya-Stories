@@ -198,7 +198,7 @@ exports.resetpwd = (req, res) => {
           // `doc` is the document _after_ `update` was applied because of
           // `new: true`
           let doc = SignUp.findOneAndUpdate(filter, resetPasswordLink, {
-            new: true
+            returnOriginal: false
           });
 
 
