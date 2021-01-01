@@ -185,7 +185,7 @@ exports.resetpwd = (req, res) => {
       });
 
        var hrefAttr = "Reset Password link" + "\n" +
-       "https://kenyan-stories.herokuapp.com/auth/api/v1/resetPasswordScreen/"+resetPasswordToken
+       "https://kenyan-stories.herokuapp.com/auth/api/v1/resetPassword/"+resetPasswordToken
 
       var mailOptions = {
         from: 'Kenyan Stories Application <${process.env.SENDER_EMAIL}>',
