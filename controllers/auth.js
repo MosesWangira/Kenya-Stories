@@ -184,8 +184,8 @@ exports.resetpwd = (req, res) => {
         }
       });
 
-      var hrefAttr = "Reset Password link" + "\n" +
-      "https://kenyan-stories.herokuapp.com/auth/api/v1/resetPassword/"+resetPasswordToken
+       var hrefAttr = "Reset Password link" + "\n" +
+       "https://kenyan-stories.herokuapp.com/auth/api/v1/resetPassword/"+resetPasswordToken
 
       var mailOptions = {
         from: 'Kenyan Stories Application <${process.env.SENDER_EMAIL}>',
@@ -250,10 +250,13 @@ exports.resetpwddatabase = (req, res) => {
             var myquery = { email: userEmail };
 
             var newvalues = { $set: {password: hash} };
-            SignUp.updateOne(myquery, newvalues);
-
-            res.status(200).send('password updated successfully')
-
+            SignUp.updateOne(myquery, newvalues, function(err, res){
+              if(err){
+                console.log(err);
+              }else{
+                result.status(200).send('password updated successfully')
+              }
+            })
           }
         })
 
