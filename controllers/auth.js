@@ -4,6 +4,10 @@ const jwt = require('jsonwebtoken')
 const SignUp = require('../models/signup');
 const Login = require('../models/login');
 
+//use nodemailer to send emails and xoauth2
+const nodemailer = require('nodemailer')
+const xoauth2 = require('xoauth2')
+
 //encrypting passwords using bcrypt
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
