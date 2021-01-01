@@ -133,14 +133,14 @@ exports.resetpwd = (req, res) => {
   //query email used to login from array
   const query = {email: req.body.email};
 
-  SignUp.find(query).toArray((err, result) =>{
+  SignUp.findOne(query, (err, result) => {
     if(err){
       const jsonResetObj = {
         status: 400,
         error: err
       }
       res.status(400).send(jsonResetObj)
-    }else if(result.length == 0){
+    }else if(result == null){
       const jsonResetObj = {
         status: 401,
         error: 'email does not exist'
