@@ -234,7 +234,7 @@ exports.resetpwddatabase = (req, res) => {
 
     jwt.verify(token, process.env.JWT_RESET_PASSWORD_KEY, function(err, decodedData){
       if(err){
-        res.status(400).send('hey:' + token)
+        res.status(400).send('token already expired');
       }else {
 
         var userEmail = decodedData.userId
