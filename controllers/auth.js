@@ -178,10 +178,10 @@ exports.resetpwd = (req, res) => {
 
 
       var mailOptions = {
-        from: 'Kenyan Stories <${process.env.SENDER_EMAIL}>',
+        from: 'Kenyan Stories Application <${process.env.SENDER_EMAIL}>',
         to: emailToSendTo,
         subject: 'Reset password code',
-        text: generatedNumber,
+        text: "Reset Password code" + "\n" + generatedNumber,
       }
 
 
