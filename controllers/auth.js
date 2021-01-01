@@ -191,28 +191,40 @@ exports.resetpwd = (req, res) => {
         } else {
           //update resetpassword attribute in signup
           //find user by email and update password
-            var query = {email: emailToSendTo}
 
-            SignUp.findOne(query, (err, result) =>{
-              if(result == null){
-                res.status(406).send('Sorry you do not have access to reset this password')
-              }
-              else{
-                var myquery = { resetPasswordLink: "" };
+          const filter = { email: emailToSendTo };
+          const resetPasswordLink = { resetPasswordLink: generatedNumber };
 
-                var newvalues = { $set: {resetPasswordLink: generatedNumber} };
-                SignUp.updateOne(myquery, newvalues)
-                result.status(200).send('password reset code sent successfully')
-                // signUpCollection.updateOne(myquery, newvalues, (err, res) =>{
-                //   if(err){
-                //     res.status(400).send('password update failed')
-                //   }else {
-                //     console.log('password updated successfully');
-                //   }
-                //   db.close()
-                // })
-                 }
-               })
+          // `doc` is the document _after_ `update` was applied because of
+          // `new: true`
+          let doc = SignUp.findOneAndUpdate(filter, resetPasswordLink, {
+            new: true
+          });
+
+
+
+          // var query = {email: emailToSendTo}
+          //
+          // SignUp.findOne(query, (err, result) =>{
+          //   if(result == null){
+          //     res.status(406).send('Sorry you do not have access to reset this password')
+          //   }
+          //   else{
+          //     var myquery = { resetPasswordLink: "" };
+          //
+          //     var newvalues = { $set: {resetPasswordLink: generatedNumber} };
+          //     SignUp.updateOne(myquery, newvalues)
+          //     // result.status(200).send('password reset code sent successfully')
+          //     // signUpCollection.updateOne(myquery, newvalues, (err, res) =>{
+          //     //   if(err){
+          //     //     res.status(400).send('password update failed')
+          //     //   }else {
+          //     //     console.log('password updated successfully');
+          //     //   }
+          //     //   db.close()
+          //     // })
+          //   }
+          // })
         }
       })
 
