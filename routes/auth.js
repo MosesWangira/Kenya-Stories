@@ -4,6 +4,7 @@ const validator = require('../validator/validation');
 const tokenAuth = require('../middleware/token-login-validation')
 
 const router = express.Router();
+router.use(express.static(__dirname + '/views'));
 
 //for testing purposes
 router.get('/getAllSignUpDetails', getAllUsers);
