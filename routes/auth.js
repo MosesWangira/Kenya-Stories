@@ -6,13 +6,6 @@ const tokenAuth = require('../middleware/token-login-validation')
 const router = express.Router();
 router.use(express.static(__dirname + '/views'));
 
-//body parser
-let bodyParser = require('body-parser');
-
-//middleware for body parsers
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({ extended: true }));
-
 //for testing purposes
 router.get('/getAllSignUpDetails', getAllUsers);
 
