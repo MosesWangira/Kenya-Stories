@@ -250,8 +250,13 @@ exports.resetpwddatabase = (req, res) => {
             var myquery = { email: userEmail };
 
             var newvalues = { $set: {password: hash} };
-            SignUp.updateOne(myquery, newvalues)
-            res.status(200).send('password updated successfully')
+            SignUp.updateOne(myquery, newvalues, function(err, res){
+              if(err){
+                console.log(err);
+              }else{
+                res.status(200).send('password updated successfully')
+              }
+            })
           }
         })
 
