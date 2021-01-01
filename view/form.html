@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validateForm() {
+  var x = document.forms["myForm"]["password"].value;
+  var y = document.forms["myForm"]["confirmPassword"].value;
+
+  if (x == "" || y == "") {
+    alert("All fields must be filled");
+    return false;
+  }
+  if( x != y){
+    alert("passwords do not match")
+    return false;
+  }
+}
+</script>
+<style>
+#rcorners1 {
+  border-radius: 5px;
+  background: #73AD21;
+}
+</style>
+</head>
+<body>
+<center>
+<form name="myForm" action="/auth/api/v1/resetPassword"
+      onsubmit="return validateForm()"
+      method="post">
+  <!-- forms to fill inorder to reset password -->
+  <label for="fname">Enter New Password:</label><br>
+  <input type="password" id="rcorners2" name="password"><br><br>
+
+  <label for="lname">Confirm Password:</label><br>
+  <input type="password" id="rcorners2" name="confirmPassword"><br><br>
+  <!-- button to submit -->
+  <input type="submit" value="Submit" id="rcorners1">
+</form>
+</center>
+</body>
+</html>

@@ -15,7 +15,6 @@ require('dotenv').config()
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-
 /*
 Sign up implementation
 using bcrypt fo password hashing
@@ -216,7 +215,7 @@ exports.resetpwd = (req, res) => {
 
 
 exports.resetpwdscreen = (req, res) => {
-  res.status(200).send("hello passcode")
+  res.render('form.html');
 };
 
 /*
