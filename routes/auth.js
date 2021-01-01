@@ -24,6 +24,8 @@ router.get('/auth/api/v1/tokenAutoLogin', tokenAuth);
 router.post('/auth/api/v1/resetPassword', resetpwd);
 
 //reset password resetPasswordScreen
-router.get('/auth/api/v1/resetPassword/:token', resetpwdscreen);
+// router.get('/auth/api/v1/resetPassword/:token', resetpwdscreen);
+
+router.get('/auth/api/v1/resetPassword', resetpwdscreen);
 
 module.exports = router
