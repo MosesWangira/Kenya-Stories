@@ -227,14 +227,10 @@ exports.resetpwddatabase = (req, res) => {
   bcrypt.hash(req.body.password, saltRounds, (err, hash) =>{
 
     var token = req.params.token
-    //use slicing to get the token passed in the url
-    // var token = baseUrl.slice(69)
-    // var password = req.body.password
-    // var confirmPassword = req.body.confirmPassword
 
     jwt.verify(token, process.env.JWT_RESET_PASSWORD_KEY, function(err, decodedData){
       if(err){
-        res.status(400).send('token already expired')
+        res.status(400).send('token already expired');
       }else {
 
         var userEmail = decodedData.userId
@@ -244,7 +240,7 @@ exports.resetpwddatabase = (req, res) => {
         //find user by email and update password
         SignUp.findOne(query, (err, result) =>{
           if(result == null){
-            res.status(400).send('Sorry you do not have access to reset this password')
+            res.status(401).send('Sorry you do not have access to reset this password')
           }
           else{
             var myquery = { email: userEmail };
@@ -254,9 +250,11 @@ exports.resetpwddatabase = (req, res) => {
               if(err){
                 console.log(err);
               }else{
-                result.status(200).send('password updated successfully')
+                console.log('password reset successfully');
               }
             })
+
+            res.status(200).send('password updated successfully')
           }
         })
 
